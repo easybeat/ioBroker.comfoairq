@@ -332,12 +332,20 @@ class Comfoairq extends utils.Adapter {
 
                     }
                 }
+				else
+				{
+					this.log.debug(`No match!: state ${id} changed: ${state.val} (ack = ${state.ack})`);
+				}
             }
 			else
 			{
-				this.log.debug(`NOT CONNECTED!!!`);
+				this.log.debug(`Not connected!: state ${id} changed: ${state.val} (ack = ${state.ack})`);
 			}
         }
+		else
+		{
+			this.log.debug(`OnStateChange: state ${id} changed: ${state.val} (ack = ${state.ack})`);
+		}
     }
 }
 
