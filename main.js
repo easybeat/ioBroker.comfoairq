@@ -217,9 +217,10 @@ class Comfoairq extends utils.Adapter {
             this.zehnder = null;
 			this.connected = false;*/
 
-            this.setStateAsync('info.connection', false, true); 
-			
-			//this.disconnectZehnder();
+			if (this.connected){
+				this.disconnectZehnder();
+				//this.setStateAsync('info.connection', false, true); 
+			}
 
             callback();
         } catch (e) {
@@ -235,7 +236,7 @@ class Comfoairq extends utils.Adapter {
             this.zehnder = null;
 			this.connected = false;
 
-            //this.setStateAsync('info.connection', false, true);
+            this.setStateAsync('info.connection', false, true);
 
             
         } catch (e) {
