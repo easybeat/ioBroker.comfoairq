@@ -229,12 +229,14 @@ class Comfoairq extends utils.Adapter {
      */
     onStateChange(id, state) {
         if (id && state && !state.ack) {
-            this.log.debug(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
+            //this.log.debug(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
 
             if (this.connected) {
                 const matches = id.match(new RegExp(this.namespace + '.command.([a-zA-Z0-9]+)'));
                 if (matches) {
                     const command = matches[1];
+
+					//this.log.debug(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
 
                     switch (command) {
 
@@ -331,6 +333,10 @@ class Comfoairq extends utils.Adapter {
                     }
                 }
             }
+			else
+			{
+				this.log.debug(`NOT CONNECTED!!!`);
+			}
         }
     }
 }
