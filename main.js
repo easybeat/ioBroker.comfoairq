@@ -209,8 +209,10 @@ class Comfoairq extends utils.Adapter {
 
     onUnload(callback) {
         try {
-            this.zehnder.CloseSession();
+            this.log.debug('unloading...';
+			this.zehnder.CloseSession();
             this.zehnder = null;
+			this.connected = false;
 
             this.setStateAsync('info.connection', false, true);
 
