@@ -142,8 +142,9 @@ class Comfoairq extends utils.Adapter {
                     }
 
 					this.log.debug('disconnet_reason: ' + reason.state);
-					this.connected = false;
-                    this.setStateAsync('info.connection', false, true);
+					this.disconnectZehnder();
+					/* this.connected = false;
+                    this.setStateAsync('info.connection', false, true); */
                 });
 
                 this.log.debug('register the app...');
@@ -211,6 +212,24 @@ class Comfoairq extends utils.Adapter {
 
     onUnload(callback) {
         try {
+            /* this.log.debug('unloading...');
+			this.zehnder.CloseSession();
+            this.zehnder = null;
+			this.connected = false;
+
+            this.setStateAsync('info.connection', false, true); */
+			
+			this.disconnectZehnder();
+
+            callback();
+        } catch (e) {
+            callback();
+        }
+    }
+
+
+	disconnectZehnder() {
+		try {
             this.log.debug('unloading...');
 			this.zehnder.CloseSession();
             this.zehnder = null;
@@ -218,11 +237,11 @@ class Comfoairq extends utils.Adapter {
 
             this.setStateAsync('info.connection', false, true);
 
-            callback();
+            
         } catch (e) {
-            callback();
+            this.log.debug('disconnect failed...');
         }
-    }
+	}
 
     /**
      * Is called if a subscribed state changes
