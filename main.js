@@ -342,7 +342,7 @@ class Comfoairq extends utils.Adapter {
 				this.log.debug(`Not connected!: state ${id} changed: ${state.val} (ack = ${state.ack})`);
 			}
         }
-		else
+		else if (!state.ack)
 		{
 			this.log.debug(`OnStateChange: state ${id} changed: ${state.val} (ack = ${state.ack})`);
 		}
