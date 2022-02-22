@@ -100,7 +100,7 @@ class Comfoairq extends utils.Adapter {
 
                 this.log.debug('register receive handler...');
                 this.zehnder.on('receive', async (data) => {
-                    this.log.debug('received: ' + JSON.stringify(data));
+                    //this.log.debug('received: ' + JSON.stringify(data));
 
                     if (data && data.result.error == 'OK') {
                         if (data.kind == 40) { // 40 = CnRpdoNotification
