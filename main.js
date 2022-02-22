@@ -141,6 +141,8 @@ class Comfoairq extends utils.Adapter {
                         this.log.warn('Other session started: ' + JSON.stringify(reason));
                     }
 
+					 this.log.debug('disconnet_reason: ' + reason.state);
+
                     this.setStateAsync('info.connection', false, true);
                 });
 
