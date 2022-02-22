@@ -241,92 +241,92 @@ class Comfoairq extends utils.Adapter {
                     switch (command) {
 
                         case 'fanModeAway':
-                            this.log.debug('Sending command: FAN_MODE_AWAY');
+                            //this.log.debug('Sending command: FAN_MODE_AWAY');
                             this.zehnder.SendCommand(1, 'FAN_MODE_AWAY');
                             break;
 
                         case 'fanModeLow':
-                            this.log.debug('Sending command: FAN_MODE_LOW');
+                            //this.log.debug('Sending command: FAN_MODE_LOW');
                             this.zehnder.SendCommand(1, 'FAN_MODE_LOW');
                             break;
 
                         case 'fanModeMedium':
-                            this.log.debug('Sending command: FAN_MODE_MEDIUM');
+                            //this.log.debug('Sending command: FAN_MODE_MEDIUM');
                             this.zehnder.SendCommand(1, 'FAN_MODE_MEDIUM');
                             break;
 
                         case 'fanModeHigh':
-                            this.log.debug('Sending command: FAN_MODE_HIGH');
+                            //this.log.debug('Sending command: FAN_MODE_HIGH');
                             this.zehnder.SendCommand(1, 'FAN_MODE_HIGH');
                             break;
 
                         case 'fanBoost10m':
-                            this.log.debug('Sending command: FAN_BOOST_10M');
+                            //this.log.debug('Sending command: FAN_BOOST_10M');
                             this.zehnder.SendCommand(1, 'FAN_BOOST_10M');
                             break;
 
                         case 'fanBoost20m':
-                            this.log.debug('Sending command: FAN_BOOST_20M');
+                            //this.log.debug('Sending command: FAN_BOOST_20M');
                             this.zehnder.SendCommand(1, 'FAN_BOOST_20M');
                             break;
 
                         case 'fanBoost30m':
-                            this.log.debug('Sending command: FAN_BOOST_30M');
+                            //this.log.debug('Sending command: FAN_BOOST_30M');
                             this.zehnder.SendCommand(1, 'FAN_BOOST_30M');
                             break;
 
                         case 'fanBoostEnd':
-                            this.log.debug('Sending command: FAN_BOOST_END');
+                            //this.log.debug('Sending command: FAN_BOOST_END');
                             this.zehnder.SendCommand(1, 'FAN_BOOST_END');
                             break;
 
                         case 'modeAuto':
-                            this.log.debug('Sending command: MODE_AUTO');
+                            //this.log.debug('Sending command: MODE_AUTO');
                             this.zehnder.SendCommand(1, 'MODE_AUTO');
                             break;
 
                         case 'modeManual':
-                            this.log.debug('Sending command: MODE_MANUAL');
+                            //this.log.debug('Sending command: MODE_MANUAL');
                             this.zehnder.SendCommand(1, 'MODE_MANUAL');
                             break;
 
                         case 'ventmodeSupply':
-                            this.log.debug('Sending command: VENTMODE_SUPPLY');
+                            //this.log.debug('Sending command: VENTMODE_SUPPLY');
                             this.zehnder.SendCommand(1, 'VENTMODE_SUPPLY');
                             break;
 
                         case 'ventmodeBalance':
-                            this.log.debug('Sending command: VENTMODE_BALANCE');
+                            //this.log.debug('Sending command: VENTMODE_BALANCE');
                             this.zehnder.SendCommand(1, 'VENTMODE_BALANCE');
                             break;
 
                         case 'tempprofNormal':
-                            this.log.debug('Sending command: TEMPPROF_NORMAL');
+                            //this.log.debug('Sending command: TEMPPROF_NORMAL');
                             this.zehnder.SendCommand(1, 'TEMPPROF_NORMAL');
                             break;
 
                         case 'tempprofCool':
-                            this.log.debug('Sending command: TEMPPROF_COOL');
+                            //this.log.debug('Sending command: TEMPPROF_COOL');
                             this.zehnder.SendCommand(1, 'TEMPPROF_COOL');
                             break;
 
                         case 'tempprofWarm':
-                            this.log.debug('Sending command: TEMPPROF_WARM');
+                            //this.log.debug('Sending command: TEMPPROF_WARM');
                             this.zehnder.SendCommand(1, 'TEMPPROF_WARM');
                             break;
 
                         case 'bypassOn':
-                            this.log.debug('Sending command: BYPASS_ON');
+                            //this.log.debug('Sending command: BYPASS_ON');
                             this.zehnder.SendCommand(1, 'BYPASS_ON');
                             break;
 
                         case 'bypassOff':
-                            this.log.debug('Sending command: BYPASS_OFF');
+                            //this.log.debug('Sending command: BYPASS_OFF');
                             this.zehnder.SendCommand(1, 'BYPASS_OFF');
                             break;
 
                         case 'bypassAuto':
-                            this.log.debug('Sending command: BYPASS_AUTO');
+                            //this.log.debug('Sending command: BYPASS_AUTO');
                             this.zehnder.SendCommand(1, 'BYPASS_AUTO');
                             break;
 
