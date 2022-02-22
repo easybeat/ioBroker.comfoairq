@@ -142,6 +142,7 @@ class Comfoairq extends utils.Adapter {
                     }
 
 					this.log.debug('disconnet_reason: ' + reason.state);
+					
 					this.disconnectZehnder();
 					/* this.connected = false;
                     this.setStateAsync('info.connection', false, true); */
@@ -215,12 +216,12 @@ class Comfoairq extends utils.Adapter {
             /* this.log.debug('unloading...');
 			this.zehnder.CloseSession();
             this.zehnder = null;
-			this.connected = false;*/
-
-			if (this.connected){
-				this.disconnectZehnder();
-				//this.setStateAsync('info.connection', false, true); 
-			}
+			this.connected = false;
+			
+			this.setStateAsync('info.connection', false, true); 
+			*/
+			
+			this.disconnectZehnder();
 
             callback();
         } catch (e) {
@@ -231,14 +232,15 @@ class Comfoairq extends utils.Adapter {
 
 	disconnectZehnder() {
 		try {
-            this.log.debug('unloading...');
-			this.zehnder.CloseSession();
-            this.zehnder = null;
-			this.connected = false;
+			if (this.connected) {
+				this.log.debug('unloading...');
+				this.zehnder.CloseSession();
+				this.zehnder = null;
+				this.connected = false;
 
-            this.setStateAsync('info.connection', false, true);
-
-            
+				this.setStateAsync('info.connection', false, true);
+			}
+	            
         } catch (e) {
             this.log.debug('disconnect failed...');
         }
