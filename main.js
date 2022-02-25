@@ -162,28 +162,31 @@ class Comfoairq extends utils.Adapter {
                 });
 
 
-				await this.connectZehnder();
 				
-                /* this.log.debug('register the app...');
+				
+                // /* this.log.debug('register the app...');
                 const registerAppResult = await this.zehnder.RegisterApp();
                 this.log.debug('registerAppResult: ' + JSON.stringify(registerAppResult));
 
-                // Start the session
-                this.log.debug('startSession');
-                const startSessionResult = await this.zehnder.StartSession(true);
+				await this.connectZehnder();
+
+
+                //Start the session
+                // this.log.debug('startSession');
+                // const startSessionResult = await this.zehnder.StartSession(true);
 								
-                this.log.debug('startSessionResult:' + JSON.stringify(startSessionResult));
+                // this.log.debug('startSessionResult:' + JSON.stringify(startSessionResult));
 
-                for (let i = 0; i < this.sensors.length; i++) {
-                    const registerResult = await this.zehnder.RegisterSensor(this.sensors[i]);
-                    this.log.debug('Registered sensor "' + this.sensors[i] + '" with result: ' + JSON.stringify(registerResult));
-                }
+                // for (let i = 0; i < this.sensors.length; i++) {
+                    // const registerResult = await this.zehnder.RegisterSensor(this.sensors[i]);
+                    // this.log.debug('Registered sensor "' + this.sensors[i] + '" with result: ' + JSON.stringify(registerResult));
+                // }
 
-                this.zehnder.VersionRequest();
+                // this.zehnder.VersionRequest();
 
-                await this.setStateAsync('info.connection', true, true);
-                this.connected = true;
-                this.subscribeStates('*'); */
+                // await this.setStateAsync('info.connection', true, true);
+                // this.connected = true;
+                // this.subscribeStates('*'); */
             } else {
                 this.log.warn('No active sensors found in configuration - stopping');
             }
@@ -217,9 +220,9 @@ class Comfoairq extends utils.Adapter {
 	
 	async connectZehnder() {
 		
-		this.log.debug('register the app...');
-		const registerAppResult = await this.zehnder.RegisterApp();
-		this.log.debug('registerAppResult: ' + JSON.stringify(registerAppResult));
+		// this.log.debug('register the app...');
+		// const registerAppResult = await this.zehnder.RegisterApp();
+		// this.log.debug('registerAppResult: ' + JSON.stringify(registerAppResult));
 
 		// Start the session
 		this.log.debug('startSession');
@@ -285,7 +288,7 @@ class Comfoairq extends utils.Adapter {
 			
 			if (restart) {
 				this.log.debug('do restart...');
-				await this.startZehnder();
+				await this.connectZehnder();
 				
 			}
 			else {
