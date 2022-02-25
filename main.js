@@ -160,7 +160,7 @@ class Comfoairq extends utils.Adapter {
                 });
 
 
-				await connectZehnder();
+				await this.connectZehnder();
 				
                 /* this.log.debug('register the app...');
                 const registerAppResult = await this.zehnder.RegisterApp();
