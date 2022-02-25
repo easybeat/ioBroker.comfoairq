@@ -147,16 +147,16 @@ class Comfoairq extends utils.Adapter {
                 });
 
                 this.log.debug('register disconnect handler...');
-                this.zehnder.on('disconnect', (reason) => {
+                this.zehnder.on('disconnect', async (reason) => {
                     if (reason.state == 'OTHER_SESSION') {
                         this.log.warn('Other session started: ' + JSON.stringify(reason));
                     }
 
 					this.log.debug('disconnet_reason: ' + reason.state);
 					
-					this.disconnectZehnder(true);
+					await this.disconnectZehnder(true);
 					
-					await this.connectZehnder();
+					
 					/* this.connected = false;
                     this.setStateAsync('info.connection', false, true); */
                 });
@@ -253,7 +253,7 @@ class Comfoairq extends utils.Adapter {
             });
     }
 
-    onUnload(callback) {
+    async onUnload(callback) {
         try {
             /* this.log.debug('unloading...');
 			this.zehnder.CloseSession();
@@ -272,7 +272,7 @@ class Comfoairq extends utils.Adapter {
     }
 
 
-	disconnectZehnder(restart) {
+	async disconnectZehnder(restart) {
 		try {
 			if (this.connected) {
 				this.log.debug('unloading...');
