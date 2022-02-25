@@ -143,7 +143,7 @@ class Comfoairq extends utils.Adapter {
 
 					this.log.debug('disconnet_reason: ' + reason.state);
 					
-					this.disconnectZehnder();
+					this.disconnectZehnder(true);
 					/* this.connected = false;
                     this.setStateAsync('info.connection', false, true); */
                 });
@@ -221,7 +221,7 @@ class Comfoairq extends utils.Adapter {
 			this.setStateAsync('info.connection', false, true); 
 			*/
 			
-			this.disconnectZehnder();
+			this.disconnectZehnder(false);
 
             callback();
         } catch (e) {
@@ -230,7 +230,7 @@ class Comfoairq extends utils.Adapter {
     }
 
 
-	disconnectZehnder() {
+	disconnectZehnder(restart) {
 		try {
 			if (this.connected) {
 				this.log.debug('unloading...');
@@ -239,6 +239,10 @@ class Comfoairq extends utils.Adapter {
 				this.connected = false;
 
 				this.setStateAsync('info.connection', false, true);
+			}
+			
+			if (restart) {
+				this.log.debug('do restart...');
 			}
 	            
         } catch (e) {
