@@ -78,6 +78,11 @@ class Comfoairq extends utils.Adapter {
             this.log.debug('Current configuration: ' + JSON.stringify(data));
         });
         */
+		
+		this.startZehnder();
+	}
+	
+	startZehnder() {
 
         if (this.config.host && this.config.port && this.config.uuid && this.config.pin) {
             if (this.sensors.length > 0) {
