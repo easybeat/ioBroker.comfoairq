@@ -79,10 +79,13 @@ class Comfoairq extends utils.Adapter {
         });
         */
 		
+	
 		this.startZehnder();
 	}
 	
 	startZehnder() {
+
+		this.log.debug('start Zehnder');
 
         if (this.config.host && this.config.port && this.config.uuid && this.config.pin) {
             if (this.sensors.length > 0) {
