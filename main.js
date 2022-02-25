@@ -80,10 +80,10 @@ class Comfoairq extends utils.Adapter {
         */
 		
 	
-		this.startZehnder();
+		await this.startZehnder();
 	}
 	
-	startZehnder() {
+	async startZehnder() {
 
 		this.log.debug('start Zehnder');
 
