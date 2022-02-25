@@ -83,6 +83,9 @@ class Comfoairq extends utils.Adapter {
 		await this.startZehnder();
 	}
 	
+	
+	
+	
 	async startZehnder() {
 
 		this.log.debug('start Zehnder');
@@ -251,7 +254,7 @@ class Comfoairq extends utils.Adapter {
 			}
 			
 			if (restart) {
-				this.log.debug('do restart...');
+				this.log.debug('do restart!!...');
 				this.onReady = true;
 				
 			}
