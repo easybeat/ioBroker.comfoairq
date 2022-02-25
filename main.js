@@ -244,6 +244,11 @@ class Comfoairq extends utils.Adapter {
 			if (restart) {
 				this.log.debug('do restart...');
 			}
+			else {
+				this.log.debug('no restart...');
+			}				
+			
+		
 	            
         } catch (e) {
             this.log.debug('disconnect failed...');
