@@ -283,7 +283,7 @@ class Comfoairq extends utils.Adapter {
 			
 			if (restart) {
 				this.log.debug('do restart...');
-				var xyz = await this.connectZehnder();
+				async () => await this.connectZehnder();
 				
 			}
 			else {
