@@ -263,7 +263,7 @@ class Comfoairq extends utils.Adapter {
 			this.setStateAsync('info.connection', false, true); 
 			*/
 			
-			this.disconnectZehnder(false);
+			await this.disconnectZehnder(false);
 
             callback();
         } catch (e) {
@@ -285,7 +285,7 @@ class Comfoairq extends utils.Adapter {
 			
 			if (restart) {
 				this.log.debug('do restart...');
-				
+				await this.connectZehnder();
 				
 			}
 			else {
