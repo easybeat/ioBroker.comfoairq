@@ -163,6 +163,7 @@ class Comfoairq extends utils.Adapter {
                 // Start the session
                 this.log.debug('startSession');
                 const startSessionResult = await this.zehnder.StartSession(true);
+								
                 this.log.debug('startSessionResult:' + JSON.stringify(startSessionResult));
 
                 for (let i = 0; i < this.sensors.length; i++) {
@@ -251,7 +252,7 @@ class Comfoairq extends utils.Adapter {
 			
 			if (restart) {
 				this.log.debug('do restart...');
-				this.ready = true;
+				this.onReady = true;
 				
 			}
 			else {
