@@ -78,17 +78,6 @@ class Comfoairq extends utils.Adapter {
             this.log.debug('Current configuration: ' + JSON.stringify(data));
         });
         */
-		
-	
-		await this.startZehnder();
-	}
-	
-	
-	
-	
-	async startZehnder() {
-
-		this.log.debug('start Zehnder');
 
         if (this.config.host && this.config.port && this.config.uuid && this.config.pin) {
             if (this.sensors.length > 0) {
@@ -147,46 +136,37 @@ class Comfoairq extends utils.Adapter {
                 });
 
                 this.log.debug('register disconnect handler...');
-                this.zehnder.on('disconnect', async (reason) => {
+                this.zehnder.on('disconnect', (reason) => {
                     if (reason.state == 'OTHER_SESSION') {
                         this.log.warn('Other session started: ' + JSON.stringify(reason));
                     }
 
 					this.log.debug('disconnet_reason: ' + reason.state);
 					
-					await this.disconnectZehnder(true);
-					
-					
+					this.disconnectZehnder();
 					/* this.connected = false;
                     this.setStateAsync('info.connection', false, true); */
                 });
 
-
-				
-				
-                // /* this.log.debug('register the app...');
+                this.log.debug('register the app...');
                 const registerAppResult = await this.zehnder.RegisterApp();
                 this.log.debug('registerAppResult: ' + JSON.stringify(registerAppResult));
 
-				await this.connectZehnder();
+                // Start the session
+                this.log.debug('startSession');
+                const startSessionResult = await this.zehnder.StartSession(true);
+                this.log.debug('startSessionResult:' + JSON.stringify(startSessionResult));
 
+                for (let i = 0; i < this.sensors.length; i++) {
+                    const registerResult = await this.zehnder.RegisterSensor(this.sensors[i]);
+                    this.log.debug('Registered sensor "' + this.sensors[i] + '" with result: ' + JSON.stringify(registerResult));
+                }
 
-                //Start the session
-                // this.log.debug('startSession');
-                // const startSessionResult = await this.zehnder.StartSession(true);
-								
-                // this.log.debug('startSessionResult:' + JSON.stringify(startSessionResult));
+                this.zehnder.VersionRequest();
 
-                // for (let i = 0; i < this.sensors.length; i++) {
-                    // const registerResult = await this.zehnder.RegisterSensor(this.sensors[i]);
-                    // this.log.debug('Registered sensor "' + this.sensors[i] + '" with result: ' + JSON.stringify(registerResult));
-                // }
-
-                // this.zehnder.VersionRequest();
-
-                // await this.setStateAsync('info.connection', true, true);
-                // this.connected = true;
-                // this.subscribeStates('*'); */
+                await this.setStateAsync('info.connection', true, true);
+                this.connected = true;
+                this.subscribeStates('*');
             } else {
                 this.log.warn('No active sensors found in configuration - stopping');
             }
@@ -216,31 +196,6 @@ class Comfoairq extends utils.Adapter {
             this.log.error('Instance configuration invalid');
         }
     }
-	
-	
-	async connectZehnder() {
-		
-		// this.log.debug('register the app...');
-		// const registerAppResult = await this.zehnder.RegisterApp();
-		// this.log.debug('registerAppResult: ' + JSON.stringify(registerAppResult));
-
-		// Start the session
-		this.log.debug('startSession');
-		const startSessionResult = await this.zehnder.StartSession(true);
-						
-		this.log.debug('startSessionResult:' + JSON.stringify(startSessionResult));
-
-		for (let i = 0; i < this.sensors.length; i++) {
-			const registerResult = await this.zehnder.RegisterSensor(this.sensors[i]);
-			this.log.debug('Registered sensor "' + this.sensors[i] + '" with result: ' + JSON.stringify(registerResult));
-		}
-
-		this.zehnder.VersionRequest();
-
-		await this.setStateAsync('info.connection', true, true);
-		this.connected = true;
-		this.subscribeStates('*');
-	}
 
     cleanNamespace(id) {
         return id
@@ -256,7 +211,7 @@ class Comfoairq extends utils.Adapter {
             });
     }
 
-    async onUnload(callback) {
+    onUnload(callback) {
         try {
             /* this.log.debug('unloading...');
 			this.zehnder.CloseSession();
@@ -266,7 +221,7 @@ class Comfoairq extends utils.Adapter {
 			this.setStateAsync('info.connection', false, true); 
 			*/
 			
-			await this.disconnectZehnder(false);
+			this.disconnectZehnder();
 
             callback();
         } catch (e) {
@@ -275,29 +230,16 @@ class Comfoairq extends utils.Adapter {
     }
 
 
-	async disconnectZehnder(restart) {
+	disconnectZehnder() {
 		try {
 			if (this.connected) {
 				this.log.debug('unloading...');
 				this.zehnder.CloseSession();
-				
+				this.zehnder = null;
 				this.connected = false;
 
 				this.setStateAsync('info.connection', false, true);
 			}
-			
-			if (restart) {
-				this.log.debug('do restart...');
-				
-				//await this.connectZehnder();
-				
-			}
-			else {
-				this.log.debug('no restart...');
-				this.zehnder = null;
-			}				
-			
-		
 	            
         } catch (e) {
             this.log.debug('disconnect failed...');
