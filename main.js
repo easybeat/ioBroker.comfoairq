@@ -251,6 +251,7 @@ class Comfoairq extends utils.Adapter {
 			
 			if (restart) {
 				this.log.debug('do restart...');
+				await this.startZehnder();
 			}
 			else {
 				this.log.debug('no restart...');
