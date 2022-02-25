@@ -280,7 +280,7 @@ class Comfoairq extends utils.Adapter {
 			if (this.connected) {
 				this.log.debug('unloading...');
 				this.zehnder.CloseSession();
-				this.zehnder = null;
+				
 				this.connected = false;
 
 				this.setStateAsync('info.connection', false, true);
@@ -293,7 +293,7 @@ class Comfoairq extends utils.Adapter {
 			}
 			else {
 				this.log.debug('no restart...');
-				
+				this.zehnder = null;
 			}				
 			
 		
