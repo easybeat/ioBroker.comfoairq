@@ -251,7 +251,8 @@ class Comfoairq extends utils.Adapter {
 			
 			if (restart) {
 				this.log.debug('do restart...');
-				this.on('ready', this.onReady.bind(this));
+				this.ready = true;
+				
 			}
 			else {
 				this.log.debug('no restart...');
